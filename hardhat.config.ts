@@ -1,5 +1,6 @@
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
+import '@nomiclabs/hardhat-etherscan';
 
 const GOERLI_PRIVATE_KEY = '';
 
@@ -12,6 +13,9 @@ const config: HardhatUserConfig = {
       url: `https://eth-goerli.g.alchemy.com/v2/U6OMFmvzf0C7Kh8k7t4S-um14rBA_4nb`,
       accounts: [GOERLI_PRIVATE_KEY],
     },
+  },
+  etherscan: {
+    apiKey: { goerli: '' },
   },
 };
 

@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 import "./ERC5633.sol";
 
-contract ERC5633Demo is ERC1155, ERC1155Burnable, Ownable, ERC5633 {
+contract soulBoundERC1155 is ERC1155, ERC1155Burnable, Ownable, ERC5633 {
     constructor() ERC1155("") ERC5633() {}
 
     function mint(
@@ -18,7 +18,6 @@ contract ERC5633Demo is ERC1155, ERC1155Burnable, Ownable, ERC5633 {
         bytes memory data
     ) public onlyOwner {
         _mint(account, id, amount, data);
-        _setSoulbound(id, true);
     }
 
     function mintBatch(
@@ -28,10 +27,10 @@ contract ERC5633Demo is ERC1155, ERC1155Burnable, Ownable, ERC5633 {
         bytes memory data
     ) public onlyOwner {
         _mintBatch(to, ids, amounts, data);
+    }
 
-        for (uint256 i = 0; i < ids.length; ++i) {
-            _setSoulbound(ids[i], true);
-        }
+    function setSoulbound(uint256 id, bool soulbound) public onlyOwner {
+        _setSoulbound(id, soulbound);
     }
 
     // The following functions are overrides required by Solidity.
